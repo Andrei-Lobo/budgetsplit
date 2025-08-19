@@ -6,4 +6,5 @@ import com.budgetsplittingapp.budgetsplit.model.Expense;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long>{
     
+    
 }

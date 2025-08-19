@@ -1,15 +1,16 @@
 package com.budgetsplittingapp.budgetsplit.model;
 
 import jakarta.persistence.*;
-
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Data
+@Table(name = "users")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-@Table(name = "users")
 public class User {
 
     @Id
@@ -18,6 +19,6 @@ public class User {
 
     private String name;
 
-   
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GroupMember> groupMemberships;
 }
