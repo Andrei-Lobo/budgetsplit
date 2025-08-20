@@ -1,5 +1,7 @@
 package com.budgetsplittingapp.budgetsplit.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,19 +13,18 @@ import lombok.*;
 public class Expense {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double amount;
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "paid_by")
     private User paidBy;
 
     @ManyToOne
-    private Group groupRef;
-
-
-
-   
+    @JoinColumn(name = "group_id")
+    @JsonIgnoreProperties({ "expenses", "members" })
+    private Group group;
 
 }
